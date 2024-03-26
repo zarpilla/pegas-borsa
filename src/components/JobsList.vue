@@ -90,7 +90,7 @@ h1 {
 h3 {
   font-size: 1.4rem;
   font-weight: bold;
-  color: fff;
+  color: #fff;
 }
 
 .greetings h1,
