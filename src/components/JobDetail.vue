@@ -29,7 +29,7 @@ const apiBase = import.meta.env.VITE_API_BASE_URL;
 <template>
   <div class="job mt-4" v-if="job && job.attributes">
     <div class="row mb-4 mt-4">
-      <div class="col-12 col-md-4 mt-4">
+      <!-- <div class="col-12 col-md-4 mt-4">
         
         <div
           class="picture-wrapper"
@@ -60,10 +60,10 @@ const apiBase = import.meta.env.VITE_API_BASE_URL;
           />
         </div>
 
-      </div>
-      <div class="col-12 col-md-8 mt-4">
+      </div> -->
+      <div class="z mt-4">
         <h1 class="mb-4 mt-4">{{ job.attributes.name }}</h1>
-        <div class="mb-4">
+        <div class="mb-4 text">
           <span
             v-if="job.attributes.job_type && job.attributes.job_type.data"
             >{{ job.attributes.job_type.data.attributes.name }}</span
@@ -75,47 +75,84 @@ const apiBase = import.meta.env.VITE_API_BASE_URL;
             a {{ job.attributes.job_entity.data.attributes.name }}</span
           >
         </div>
-      </div>  
+      </div>
     </div>
 
-
     <h3 v-if="job.attributes.description">Descripció</h3>
-    <vue-markdown
-      v-if="job.attributes.description"
-      :source="job.attributes.description"
-    ></vue-markdown>
-    <h3 v-if="job.attributes.requirements" class="mt-4">Requisits</h3>
-    <vue-markdown
-      v-if="job.attributes.requirements"
-      :source="job.attributes.requirements"
-    ></vue-markdown>
-    <h3 v-if="job.attributes.apply" class="mt-4">Com apuntar-se</h3>
-    <vue-markdown
-      v-if="job.attributes.requirements"
-      :source="job.attributes.apply"
-    ></vue-markdown>
-    <div class="mt-40 mb-40" v-if="job.attributes.c2aText && job.attributes.c2aLink">
-      <a class="button mt-4" target="_blank" :href="job.attributes.c2aLink">{{
-        job.attributes.c2aText
-      }}</a>
+    <div class="body-text">
+      <vue-markdown
+        v-if="job.attributes.description"
+        :source="job.attributes.description"
+      ></vue-markdown>
+      <h3 v-if="job.attributes.requirements" class="mt-4">Requisits</h3>
+      <vue-markdown
+        v-if="job.attributes.requirements"
+        :source="job.attributes.requirements"
+      ></vue-markdown>
+      <h3 v-if="job.attributes.apply" class="mt-4">Com apuntar-se</h3>
+      <vue-markdown
+        v-if="job.attributes.requirements"
+        :source="job.attributes.apply"
+      ></vue-markdown>
+      <div
+        class="mt-40 mb-40"
+        v-if="job.attributes.c2aText && job.attributes.c2aLink"
+      >
+        <a class="button mt-4" target="_blank" :href="job.attributes.c2aLink">{{
+          job.attributes.c2aText
+        }}</a>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 h1 {
-  font-weight: 500;
+  /* font-weight: 500;
   font-size: 2.6rem;
   position: relative;
-  top: -10px;
+  top: -10px; */
+
+  color: var(--blanc, #fff);
+  font-family: "Space Grotesk";
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px; /* 127.273% */
+  letter-spacing: 0.88px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #6D5EF7;
+  display: inline-block;
 }
 
 h3 {
-  font-size: 1.2rem;
+  color: var(--blanc, #fff);
+  font-family: "Space Grotesk";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 127.273% */
+  letter-spacing: 0.88px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #6D5EF7;
   display: inline-block;
-  border: 1px solid #000;
-  padding: 0.5rem 2rem;
-  color: #000;
+}
+.text{
+  color: var(--blanc, #FFF);
+font-family: "Space Grotesk";
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px;
+}
+
+.body-text {
+  color: var(--blanc, #fff);
+  font-family: "Space Grotesk";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .greetings h1,
@@ -151,10 +188,10 @@ h3 {
   height: 250px;
   object-fit: cover;
 }
-.mt-40{
+.mt-40 {
   margin-top: 4rem;
 }
-.mb-40{
+.mb-40 {
   margin-bottom: 4rem;
 }
 </style>

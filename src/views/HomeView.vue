@@ -23,6 +23,12 @@ watch(
 
 <template>
   <main>    
+
+    <div class="container">
+      <img src="@/assets/taulell.svg" class="mt-5 ps-5 pe-5 taulell" alt="" />
+    </div>
+    
+
     <CategoriesList :category-id="categoryId" />
     <div class="container">
       <TheWelcome />
@@ -31,3 +37,9 @@ watch(
     
   </main>
 </template>
+<style scoped>
+.taulell{
+  max-width: 100%;
+}
+</style>
+

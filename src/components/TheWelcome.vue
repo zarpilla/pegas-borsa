@@ -8,9 +8,9 @@ import SupportIcon from "./icons/IconSupport.vue";
 </script>
 
 <template>
-  <h1 class="w-50 ms-auto me-auto mt-4 mb-4">
+  <!-- <h1 class="w-50 ms-auto me-auto mt-4 mb-4">
     Benvinguda a la borsa de feina i pràctiques de Pegàs de Foc!
-  </h1>
+  </h1> -->
 </template>
 <style scoped>
 h1{font-size: 1.2rem;}

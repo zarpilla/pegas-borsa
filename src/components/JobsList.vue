@@ -38,62 +38,37 @@ const apiBase = import.meta.env.VITE_API_BASE_URL;
 </script>
 
 <template>
-  <div class="jobs-list">
+  <div class="jobs-list mt-5 pt-3">
     <div class="row">
       <div class="col-12 col-md-4 mb-4" v-for="job in jobs">
-        <div
-          class="picture-wrapper"
-          :class="class"
-          v-if="job.attributes.image && job.attributes.image.data"
-        >
-          <RouterLink class="z" :to="'/id/' + job.id">
-            <img
-              :alt="job.attributes.image.data[0].attributes.alternativeText"
-              :src="apiBase + job.attributes.image.data[0].attributes.url"
-            />
-          </RouterLink>
-        </div>
-        <div
-          class="picture-wrapper"
-          :class="class"
-          v-else-if="
-            job.attributes.job_categories &&
-            job.attributes.job_categories.data &&
-            job.attributes.job_categories.data.length
-          "
-        >
-          <RouterLink class="z" :to="'/id/' + job.id">
-            <img
-              alt=""
-              :src="
-                apiBase +
-                job.attributes.job_categories.data[0].attributes.image.data[0]
-                  .attributes.url
-              "
-            />
-          </RouterLink>
-        </div>
-        <div v-else></div>
-
         <h3 class="mt-2 mb-3">
           <RouterLink class="text" :to="'/id/' + job.id">
             {{ job.attributes.name }}
+            <span
+              v-if="job.attributes.job_entity && job.attributes.job_entity.data"
+            >
+              - {{ job.attributes.job_entity.data.attributes.name }}</span
+            >
           </RouterLink>
         </h3>
+        <div class="mb-4 body-text">
+          <span
+            v-if="
+              job.attributes.description &&
+              job.attributes.description.length > 100
+            "
+            >{{ job.attributes.description.substring(0, 100) }}...</span
+          >
+          <span
+            v-if="
+              job.attributes.description &&
+              job.attributes.description.length <= 100
+            "
+            >{{ job.attributes.description }}</span
+          >
+        </div>
         <div class="mt-2 mb-3">
           <RouterLink class="button" :to="'/id/' + job.id">+ INFO</RouterLink>
-        </div>
-        <div class="mb-4">
-          <span
-            v-if="job.attributes.job_type && job.attributes.job_type.data"
-            >{{ job.attributes.job_type.data.attributes.name }}</span
-          >
-
-          <span
-            v-if="job.attributes.job_entity && job.attributes.job_entity.data"
-          >
-            a {{ job.attributes.job_entity.data.attributes.name }}</span
-          >
         </div>
       </div>
       <div v-if="!jobs.length">
@@ -144,9 +119,26 @@ h3 {
     color: #000;
   }
 }
-.text {
-  text-decoration: none;
-  color: #000;
+.text,
+.text span {
+  color: var(--blanc, #fff);
+  font-family: "Space Grotesk";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 127.273% */
+  letter-spacing: 0.88px;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+}
+
+.body-text {
+  color: var(--blanc, #fff);
+  font-family: "Space Grotesk";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 @media (min-width: 1024px) {
