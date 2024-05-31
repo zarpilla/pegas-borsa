@@ -10,10 +10,7 @@ import HelloWorld from "./components/HelloWorld.vue";
         <HelloWorld msg="" />        
       </div>      
     </header>
-    <div class="container mt-4">      
-      <img src="@/assets/borsa.svg" class="mt-5 title" alt="" />
-    </div>  
-
+    
     <RouterView />
   </div>
 </template>

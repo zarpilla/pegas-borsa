@@ -10,8 +10,9 @@ defineProps<{
       <img src="@/assets/logo-w.svg" class="logo-100" alt="" />
     </RouterLink>    
 
-    <!-- <h1 class="mt-4 ms-auto">{{ msg }}</h1>     -->
     <div class="nav ms-auto me-md-5 ms-5">
+      <RouterLink to="/treball" class="text me-5">Borsa de treball</RouterLink>
+      <RouterLink to="/voluntariat" class="text me-5">Borsa de voluntariat</RouterLink>
       <a href="https://pegasdefoc.org" target="_blank" class="text">TORNAR A PEGÀS DE FOC</a>
     </div>
   </div>

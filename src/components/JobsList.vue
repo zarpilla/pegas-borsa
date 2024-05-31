@@ -3,24 +3,20 @@ import { ref, watch } from "vue";
 import { Api } from "@/service/api/index";
 import { useRoute } from "vue-router";
 
-const props = defineProps({
-  category: {
-    type: String,
-    default: "",
-  },
-});
-
 const route = useRoute();
 const categoryId = ref("");
 categoryId.value = route.params.categoryId as string;
+
+const typeId = ref("treball");
+typeId.value = route.params.typeId as string;
 
 const jobs = ref([] as any[]);
 
 const fetchJobs = async () => {
   if (categoryId.value) {
-    jobs.value = (await Api.jobs.listCategory(categoryId.value)).data.data;
+    jobs.value = (await Api.jobs.listCategory(typeId.value, categoryId.value)).data.data;
   } else {
-    jobs.value = (await Api.jobs.list()).data.data;
+    jobs.value = (await Api.jobs.list(typeId.value)).data.data;
   }
 };
 
@@ -28,6 +24,13 @@ watch(
   () => route.params.categoryId,
   async (newValue) => {
     categoryId.value = route.params.categoryId as string;
+    fetchJobs();
+  }
+);
+watch(
+  () => route.params.typeId,
+  async (newValue) => {
+    typeId.value = route.params.typeId as string;
     fetchJobs();
   }
 );
@@ -42,7 +45,7 @@ const apiBase = import.meta.env.VITE_API_BASE_URL;
     <div class="row">
       <div class="col-12 col-md-4 mb-4" v-for="job in jobs">
         <h3 class="mt-2 mb-3">
-          <RouterLink class="text" :to="'/id/' + job.id">
+          <RouterLink class="text" :to="'/' + typeId + '/id/' + job.id">
             {{ job.attributes.name }}
             <span
               v-if="job.attributes.job_entity && job.attributes.job_entity.data"
@@ -68,7 +71,7 @@ const apiBase = import.meta.env.VITE_API_BASE_URL;
           >
         </div>
         <div class="mt-2 mb-3">
-          <RouterLink class="button" :to="'/id/' + job.id">+ INFO</RouterLink>
+          <RouterLink class="button" :to="'/' + typeId + '/id/' + job.id">+ INFO</RouterLink>
         </div>
       </div>
       <div v-if="!jobs.length">

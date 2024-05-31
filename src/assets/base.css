@@ -50,6 +50,20 @@
   }
 }
 
+
+@font-face {
+	font-family: 'Juniper Bay';
+	src: url('/fonts/juniper-bay.eot');
+	src: url('/fonts/juniper-bay.eot?#iefix') format('embedded-opentype'),
+             url('/fonts/juniper-bay.woff2') format('woff2'),
+	     url('/fonts/juniper-bay.woff') format('woff'),
+	     url('/fonts/juniper-bay.ttf') format('truetype'),
+	     url('/fonts/juniper-bay.svg#youworkforthem') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
 *,
 *::before,
 *::after {

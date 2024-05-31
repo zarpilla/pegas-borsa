@@ -2,10 +2,12 @@
 import { ref } from 'vue'
 import { Api } from '@/service/api/index'
 
-
-
 const props = defineProps({
   categoryId: {
+    type: String,
+    default: ''
+  },
+  typeId: {
     type: String,
     default: ''
   }
@@ -23,14 +25,14 @@ fetch()
 </script>
 
 <template>
-  <div class="categories-list mt-5 pt-5">
+  <div class="categories-list mt-5 pt-5" :class="`type-${typeId}`">
     <div class="container">
     <div class="d-flex flex-wrap">
       <div class="item text-center pt-1 pb-3 me-md-3">
-        <RouterLink class="category" :class="{ 'active' : categoryId === '' }" to="/">Totes</RouterLink>
+        <RouterLink class="category" :class="{ 'active' : categoryId === '' }" :to="`/${typeId}`">Totes</RouterLink>
       </div>
       <div class="item text-center pt-1 pb-3 me-md-3" v-for="category in categories">
-        <RouterLink class="category ms-auto me-auto" :class="{ 'active' : categoryId === category.attributes.slug }" :to="'/cat/' + category.attributes.slug">{{ category.attributes.name }}</RouterLink>
+        <RouterLink class="category ms-auto me-auto" :class="{ 'active' : categoryId === category.attributes.slug }" :to="'/' + typeId + '/' + category.attributes.slug">{{ category.attributes.name }}</RouterLink>
       </div>
     </div>
   </div>
@@ -59,6 +61,14 @@ fetch()
   &.active{
     background-color: #6D5EF7;
     border-color: #6D5EF7;
+  }
+}
+
+.type-voluntariat .category{  
+  &.active{
+    background-color: #4CFF93;
+    border-color: #4CFF93;
+    color: #000;
   }
 }
 

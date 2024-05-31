@@ -10,6 +10,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: "/:typeId",
+      name: "home-type",
+      component: HomeView,
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting
@@ -18,7 +23,7 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
     },
     {
-      path: '/cat/:categoryId',
+      path: '/:typeId/:categoryId',
       name: 'category-id',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -26,7 +31,7 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
-      path: '/id/:jobId',
+      path: '/:typeId/id/:jobId',
       name: 'job-id',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
